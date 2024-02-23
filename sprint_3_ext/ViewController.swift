@@ -2,14 +2,14 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak private var label: UILabel!
-    @IBOutlet weak private var log: UITextView!
+    @IBOutlet weak private var counterLabel: UILabel!
+    @IBOutlet weak private var logTextView: UITextView!
     private var count: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setLabelText()
-        log.text = "История изменений:"
+        logTextView.text = "История изменений:"
     }
 
     @IBAction private func plusDidTap(_ sender: Any) {
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     }
     
     private func setLabelText() {
-        label.text = (count == 0) ? "0" : "Значение счетчика: \(count)"
+        counterLabel.text = (count == 0) ? "0" : "Значение счетчика: \(count)"
     }
     
     private func addToLog(text: String) {
@@ -44,10 +44,10 @@ class ViewController: UIViewController {
         dateFormatter.timeStyle = .medium
         let currentDate = dateFormatter.string(from: Date())
         
-        log.text = log.text + "\n\(currentDate): \(text)"
+        logTextView.text = logTextView.text + "\n\(currentDate): \(text)"
         
-        let range = NSMakeRange(log.text.count-1, 1)
-        log.scrollRangeToVisible(range)
+        let range = NSMakeRange(logTextView.text.count-1, 1)
+        logTextView.scrollRangeToVisible(range)
     }
 }
 
